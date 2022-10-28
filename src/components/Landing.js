@@ -72,7 +72,7 @@ const Landing = () => {
                         <td/>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Launch A</td>
+                        <td class="h-14 flex justify-center items-center border">Lunch A</td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
@@ -80,7 +80,7 @@ const Landing = () => {
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Launch B</td>
+                        <td class="h-14 flex justify-center items-center border">Lunch B</td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
@@ -88,7 +88,7 @@ const Landing = () => {
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Launch C</td>
+                        <td class="h-14 flex justify-center items-center border">Lunch C</td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
@@ -96,7 +96,7 @@ const Landing = () => {
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Launch D</td>
+                        <td class="h-14 flex justify-center items-center border">Lunch D</td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
                         <td class="border"><MemberDropDown onSelectChange={onSelectChange}/></td>
