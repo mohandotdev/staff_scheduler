@@ -1,17 +1,30 @@
 import React, { useState } from 'react';
 import MemberDropDown from './MemberDropDown';
 import {Load} from './Load';
+import { employeeLoad } from './employeeLoad';
 
 const Landing = () => {
     const[,setStaff] = useState();
     const forceUpdate = React.useCallback(() => setStaff({}), []);
-    const onSelectChange = (sm,day) =>
+    const onSelectChange = (sm,day,shift) =>
     {   
-        //Updating the data
-        setStaff(sm.value);
+        //Updating the Staff Load
+        if(employeeLoad[shift][day] === "NA"){
+            employeeLoad[shift][day] = sm.value;
+            setStaff(sm.value);
+            Load[day][sm.value] += 1;
+            Load['tot'][sm.value] += 1;
+        }
+        else{
+            let existValue = employeeLoad[shift][day];
+            Load[day][existValue] -= 1;
+            Load['tot'][existValue] -=1;
+            employeeLoad[shift][day] = sm.value;
+            setStaff(sm.value);
+            Load[day][sm.value] += 1;
+            Load['tot'][sm.value] += 1;
+        }
         forceUpdate();
-        Load[day][sm.value] += 1;
-        Load['tot'][sm.value] += 1;
     } 
     const onSelectChange6 = (sm) =>
     {
@@ -46,27 +59,27 @@ const Landing = () => {
                 <tbody>
                     <tr>
                         <td className="flex h-14 justify-center items-center border">Morning Up Stairs</td>
-                        <td className="border" id='mon'><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="mon" shift="morning_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" shift="morning_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" shift="morning_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" shift="morning_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" shift="morning_up_stairs" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
                         <td className="h-14 flex justify-center items-center border">Morning Down Stairs</td>
-                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="mon" shift="morning_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" shift="morning_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" shift="morning_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" shift="morning_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" shift="morning_down_stairs" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
                         <td className="h-14 flex justify-center items-center border">Morning Paking Lot</td>
-                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="mon" shift="morning_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" shift="morning_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" shift="morning_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" shift="morning_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" shift="morning_parking_lot" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr className="border">
                         <td className="h-14"></td>
@@ -118,27 +131,27 @@ const Landing = () => {
                     </tr>
                     <tr>
                         <td className="flex h-14 justify-center items-center border">Afternoon Up Stairs</td>
-                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="mon" shift="afternoon_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" shift="afternoon_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" shift="afternoon_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" shift="afternoon_up_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" shift="afternoon_up_stairs" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
                         <td className="h-14 flex justify-center items-center border">Afternoon Down Stairs</td>
-                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="mon" shift="afternoon_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" shift="afternoon_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" shift="afternoon_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" shift="afternoon_down_stairs" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" shift="afternoon_down_stairs" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
                         <td className="h-14 flex justify-center items-center border">Afternoon Paking Lot</td>
-                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="mon" shift="afternoon_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" shift="afternoon_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" shift="afternoon_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" shift="afternoon_parking_lot" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" shift="afternoon_parking_lot" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr className="border">
                         <td className="h-14"></td>

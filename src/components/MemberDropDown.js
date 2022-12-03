@@ -21,7 +21,7 @@ const customTheme = {
 }
 
 
-const MemberDropDown = ({onSelectChange,day}) => 
+const MemberDropDown = ({onSelectChange,day,shift}) => 
 {
   return (
     <div className='px-1'>
@@ -29,7 +29,7 @@ const MemberDropDown = ({onSelectChange,day}) =>
         placeholder={`Choose Staff`}
         options={Options}
         styles={customTheme}
-        onChange = {(selectedOption) => onSelectChange(selectedOption,day)}
+        onChange = {(selectedOption) => onSelectChange(selectedOption,day,shift)}
         />
     </div>
   )
