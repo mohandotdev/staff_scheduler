@@ -1,50 +1,18 @@
 import React, { useState } from 'react';
 import MemberDropDown from './MemberDropDown';
-// import { Options } from '../constant/options';
 import {Load} from './Load';
 
 const Landing = () => {
-    const[,setStaff] = useState("");
+    const[,setStaff] = useState();
     const forceUpdate = React.useCallback(() => setStaff({}), []);
-
-    const onSelectChange = (sm,data) =>
+    const onSelectChange = (sm,day) =>
     {   
-        console.log(data);
-        switch(data)
-        {
-            case "mon":
-                setStaff(sm.value)
-                Load[0][`${sm.value}`] += 1;
-                Load[5][`${sm.value}`] += 1;
-                forceUpdate();
-                break;
-            case "tue":
-                setStaff(sm.value)
-                Load[1][`${sm.value}`] += 1;
-                Load[5][`${sm.value}`] += 1;
-                forceUpdate();
-                break;
-            case "wed":
-                setStaff(sm.value)
-                Load[2][`${sm.value}`] += 1;
-                Load[5][`${sm.value}`] += 1;
-                forceUpdate();
-                break;
-            case "thu":
-                setStaff(sm.value)
-                Load[3][`${sm.value}`] += 1;
-                Load[5][`${sm.value}`] += 1;
-                forceUpdate();
-                break;
-            case "fri":
-                setStaff(sm.value)
-                Load[4][`${sm.value}`] += 1;
-                Load[5][`${sm.value}`] += 1;
-                forceUpdate();
-                break;
-            default:
-                setStaff("")
-            }
+        //Updating the data
+        setStaff(sm.value);
+        forceUpdate();
+        Load[day][sm.value] = +1;
+        Load['tot'][sm.value] = +1;
+        
     } 
     const onSelectChange6 = (sm) =>
     {
@@ -78,71 +46,31 @@ const Landing = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">Morning Up Stairs</td>
-                        <td class="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="flex h-14 justify-center items-center border">Morning Up Stairs</td>
+                        <td className="border" id='mon'><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Morning Down Stairs</td>
-                        <td class="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="h-14 flex justify-center items-center border">Morning Down Stairs</td>
+                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Morning Paking Lot</td>
-                        <td class="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="h-14 flex justify-center items-center border">Morning Paking Lot</td>
+                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
                     </tr>
-                    <tr class="border">
-                        <td class="h-14"></td>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                        <td/>
-                    </tr>
-                    <tr>
-                        <td class="h-14 flex justify-center items-center border">Lunch A</td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                    </tr>
-                    <tr>
-                        <td class="h-14 flex justify-center items-center border">Lunch B</td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                    </tr>
-                    <tr>
-                        <td class="h-14 flex justify-center items-center border">Lunch C</td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                    </tr>
-                    <tr>
-                        <td class="h-14 flex justify-center items-center border">Lunch D</td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                        <td class="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
-                    </tr>
-                    <tr class="border">
-                        <td class="h-14"></td>
+                    <tr className="border">
+                        <td className="h-14"></td>
                         <td/>
                         <td/>
                         <td/>
@@ -150,31 +78,71 @@ const Landing = () => {
                         <td/>
                     </tr>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">Afternoon Up Stairs</td>
-                        <td class="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="h-14 flex justify-center items-center border">Lunch A</td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Afternoon Down Stairs</td>
-                        <td class="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="h-14 flex justify-center items-center border">Lunch B</td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
                     </tr>
                     <tr>
-                        <td class="h-14 flex justify-center items-center border">Afternoon Paking Lot</td>
-                        <td class="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
-                        <td class="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                        <td className="h-14 flex justify-center items-center border">Lunch C</td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
                     </tr>
-                    <tr class="border">
-                        <td class="h-14"></td>
+                    <tr>
+                        <td className="h-14 flex justify-center items-center border">Lunch D</td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                        <td className="border"><MemberDropDown onSelectChange={onSelectChange6}/></td>
+                    </tr>
+                    <tr className="border">
+                        <td className="h-14"></td>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
+                        <td/>
+                    </tr>
+                    <tr>
+                        <td className="flex h-14 justify-center items-center border">Afternoon Up Stairs</td>
+                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                    </tr>
+                    <tr>
+                        <td className="h-14 flex justify-center items-center border">Afternoon Down Stairs</td>
+                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                    </tr>
+                    <tr>
+                        <td className="h-14 flex justify-center items-center border">Afternoon Paking Lot</td>
+                        <td className="border"><MemberDropDown day="mon" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="tue" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="wed" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="thu" onSelectChange={onSelectChange}/></td>
+                        <td className="border"><MemberDropDown day="fri" onSelectChange={onSelectChange}/></td>
+                    </tr>
+                    <tr className="border">
+                        <td className="h-14"></td>
                         <td/>
                         <td/>
                         <td/>
@@ -189,92 +157,92 @@ const Landing = () => {
             <table className='table-fixed w-full text-gray-200 bg-slate-800'>
                 <thead>
                     <tr>
-                        <th class="h-14 border">Staff Member</th>
-                        <th class="border">Monday</th>
-                        <th class="border">Tuesday</th>
-                        <th class="border">Wednesday</th>
-                        <th class="border">Thursday</th>
-                        <th class="border">Friday</th>
-                        <th class="border">Totals</th>
+                        <th className="h-14 border">Staff Member</th>
+                        <th className="border">Monday</th>
+                        <th className="border">Tuesday</th>
+                        <th className="border">Wednesday</th>
+                        <th className="border">Thursday</th>
+                        <th className="border">Friday</th>
+                        <th className="border">Totals</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">
+                        <td className="flex h-14 justify-center items-center border">
                             X1
                         </td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[0]["X1"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[1]["X1"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[2]["X1"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[3]["X1"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X1"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[5]["X1"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["mon"]["X1"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tue"]["X1"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["wed"]["X1"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["thu"]["X1"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["fri"]["X1"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tot"]["X1"]}</p></td>
                     </tr>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">
+                        <td className="flex h-14 justify-center items-center border">
                             X2
                         </td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[0]["X2"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[1]["X2"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[2]["X2"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[3]["X2"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X2"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[5]["X2"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["mon"]["X2"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tue"]["X2"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["wed"]["X2"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["thu"]["X2"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["fri"]["X2"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tot"]["X2"]}</p></td>
                     </tr>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">
+                        <td className="flex h-14 justify-center items-center border">
                             X3
                         </td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[0]["X3"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[1]["X3"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[2]["X3"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[3]["X3"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X3"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[5]["X3"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["mon"]["X3"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tue"]["X3"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["wed"]["X3"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["thu"]["X3"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["fri"]["X3"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tot"]["X3"]}</p></td>
                     </tr>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">
+                        <td className="flex h-14 justify-center items-center border">
                             X4
                         </td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[0]["X4"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[1]["X4"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[2]["X4"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[3]["X4"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X4"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[5]["X4"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["mon"]["X4"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tue"]["X4"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["wed"]["X4"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["thu"]["X4"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["fri"]["X4"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tot"]["X4"]}</p></td>
                     </tr>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">
+                        <td className="flex h-14 justify-center items-center border">
                             X5
                         </td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[0]["X5"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[1]["X5"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[2]["X5"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X5"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X5"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[5]["X5"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["mon"]["X5"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tue"]["X5"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["wed"]["X5"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["thu"]["X5"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["fri"]["X5"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tot"]["X5"]}</p></td>
                     </tr>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">
+                        <td className="flex h-14 justify-center items-center border">
                             X6
                         </td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[0]["X6"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[1]["X6"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[2]["X6"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[3]["X6"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X6"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[5]["X6"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["mon"]["X6"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tue"]["X6"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["wed"]["X6"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["thu"]["X6"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["fri"]["X6"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tot"]["X6"]}</p></td>
                     </tr>
                     <tr>
-                        <td class="flex h-14 justify-center items-center border">
+                        <td className="flex h-14 justify-center items-center border">
                             X7
                         </td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[0]["X7"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[1]["X7"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[2]["X7"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[3]["X7"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[4]["X7"]}</p></td>
-                        <td class="border"><p className="flex justify-center items-center text-lg font-semibold">{Load[5]["X7"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["mon"]["X7"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tue"]["X7"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["wed"]["X7"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["thu"]["X7"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["fri"]["X7"]}</p></td>
+                        <td className="border"><p className="flex justify-center items-center text-lg font-semibold">{Load["tot"]["X7"]}</p></td>
                     </tr>
                 </tbody>
             </table>
